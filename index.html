@@ -1,0 +1,409 @@
+<!-- wp:html -->
+<p><style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { background: #0a0a0a; color: #f0ece4; }
+
+.nw-wrap {
+  font-family: 'Jost', sans-serif;
+  background: #0a0a0a;
+  min-height: 100vh;
+  color: #f0ece4;
+}
+
+/* ── TOP BAR ── */
+.nw-topbar {
+  background: #111;
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-weight: 300;
+}
+
+/* ── NAV ── */
+.nw-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.nw-nav-left { display: flex; gap: 28px; }
+.nw-nav-left a {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+.nw-nav-left a:hover { color: #f0ece4; }
+
+.nw-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f0ece4;
+  text-decoration: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nw-nav-right { display: flex; gap: 20px; align-items: center; }
+.nw-nav-right svg { width: 16px; height: 16px; fill: #888; cursor: pointer; transition: fill 0.2s; }
+.nw-nav-right svg:hover { fill: #f0ece4; }
+
+/* ── HERO ── */
+.nw-hero {
+  position: relative;
+  width: 100%;
+  height: 82vh;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.nw-hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition: transform 0.8s ease, filter 0.5s ease;
+}
+
+.nw-hero:hover .nw-hero-bg {
+  transform: scale(1.02);
+  filter: brightness(0.5);
+}
+
+.nw-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.1) 50%, transparent 100%);
+}
+
+.nw-hero-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(240,236,228,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nw-hero:hover .nw-hero-play {
+  background: rgba(240,236,228,0.1);
+  border-color: #f0ece4;
+}
+.nw-hero-play::after {
+  content: '';
+  border-style: solid;
+  border-width: 8px 0 8px 14px;
+  border-color: transparent transparent transparent #f0ece4;
+  margin-left: 3px;
+}
+
+.nw-hero-text {
+  position: absolute;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.nw-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 6vw, 72px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: #f0ece4;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.nw-hero-sub {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(240,236,228,0.65);
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── DATE STRIP ── */
+.nw-date-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 22px 40px 0;
+}
+.nw-date-line { flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.nw-date-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+/* ── GRID ── */
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  padding: 18px 2px 40px;
+}
+
+.nw-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 9/12;
+  background: #111;
+}
+
+.nw-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75) saturate(0.9);
+  transition: transform 0.7s ease, filter 0.4s ease;
+  display: block;
+}
+.nw-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.6) saturate(1.1);
+}
+
+.nw-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 55%);
+}
+
+.nw-card-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 12px;
+}
+
+.nw-card-date {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: rgba(240,236,228,0.5);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-weight: 300;
+}
+
+.nw-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #f0ece4;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.nw-card-duration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(240,236,228,0.7);
+  background: rgba(0,0,0,0.5);
+  padding: 2px 6px;
+  font-weight: 300;
+}
+
+/* ── SECTION DIVIDER ── */
+.nw-section-head {
+  padding: 40px 40px 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nw-section-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #888;
+  white-space: nowrap;
+}
+.nw-section-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+/* ── FEATURED ROW ── */
+.nw-featured {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 2px;
+  padding: 0 2px 2px;
+}
+
+.nw-featured .nw-card { aspect-ratio: 16/10; }
+.nw-featured .nw-card:first-child { aspect-ratio: 16/9; }
+
+/* ── FOOTER ── */
+.nw-footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+}
+.nw-footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: #444;
+}
+.nw-footer-links { display: flex; gap: 24px; }
+.nw-footer-links a {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nw-footer-links a:hover { color: #f0ece4; }
+</style></p>
+<div class="nw-wrap"><!-- TOP BAR -->
+<div class="nw-topbar">Découvrir  ·  S'abonner à la newsletter  ·  NOWNESS Digital Festival</div>
+<!-- NAV --><nav class="nw-nav">
+<div class="nw-nav-left"><a href="#">Séries</a> <a href="#">Sujets</a> <a href="#">Sélection</a> <a href="#">Programmes</a> <a href="#">Prix</a></div>
+<a class="nw-logo" href="#">NOWNESS</a>
+<div class="nw-nav-right"><!-- search --><!-- play --><!-- user --></div>
+</nav><!-- HERO -->
+<div class="nw-hero"><img class="nw-hero-bg" src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&amp;q=80&amp;auto=format" alt="Hero" />
+<div class="nw-hero-overlay"> </div>
+<div class="nw-hero-play"> </div>
+<div class="nw-hero-text">
+<h1 class="nw-hero-title">Ici &amp; Maintenant</h1>
+<p class="nw-hero-sub">Trois amis affrontent le deuil à travers des rituels partagés et des souvenirs tissés au cœur de la nature.</p>
+</div>
+</div>
+<!-- DATE STRIP -->
+<div class="nw-date-strip">
+<div class="nw-date-line"> </div>
+<span class="nw-date-label">26 Mars 2026</span>
+<div class="nw-date-line"> </div>
+</div>
+<!-- THUMBNAIL GRID -->
+<div class="nw-grid">
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1518182170546-07661fd94144?w=400&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">25 Mars</div>
+<div class="nw-card-title">Lumière d'Hiver</div>
+</div>
+<div class="nw-card-duration">04:32</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=400&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">24 Mars</div>
+<div class="nw-card-title">Les Formes du Silence</div>
+</div>
+<div class="nw-card-duration">07:18</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">23 Mars</div>
+<div class="nw-card-title">Errance Sauvage</div>
+</div>
+<div class="nw-card-duration">05:44</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">22 Mars</div>
+<div class="nw-card-title">Portrait Urbain</div>
+</div>
+<div class="nw-card-duration">03:55</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">21 Mars</div>
+<div class="nw-card-title">L'Eau et la Pierre</div>
+</div>
+<div class="nw-card-duration">06:12</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">20 Mars</div>
+<div class="nw-card-title">Altitude Zéro</div>
+</div>
+<div class="nw-card-duration">08:01</div>
+</div>
+</div>
+<!-- SECTION: EN CE MOMENT -->
+<div class="nw-section-head">
+<div class="nw-section-line"> </div>
+<h2>En Ce Moment</h2>
+<div class="nw-section-line"> </div>
+</div>
+<div class="nw-featured">
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1463003416389-296a1ad37ca0?w=800&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">Film  ·  15 Mars</div>
+<div class="nw-card-title">La Danse des Marées</div>
+</div>
+<div class="nw-card-duration">12:30</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">Art  ·  12 Mars</div>
+<div class="nw-card-title">Fragments Digitaux</div>
+</div>
+<div class="nw-card-duration">04:47</div>
+</div>
+<div class="nw-card"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&amp;q=80" alt="" />
+<div class="nw-card-overlay"> </div>
+<div class="nw-card-meta">
+<div class="nw-card-date">Nature  ·  10 Mars</div>
+<div class="nw-card-title">Immensité Verte</div>
+</div>
+<div class="nw-card-duration">09:22</div>
+</div>
+</div>
+<!-- FOOTER --><footer class="nw-footer">
+<div class="nw-footer-logo">NOWNESS</div>
+<div class="nw-footer-links"><a href="#">À Propos</a> <a href="#">Contact</a> <a href="#">Mentions Légales</a> <a href="#">Confidentialité</a> <a href="#">Newsletter</a></div>
+</footer></div>
+<!-- /wp:html -->
